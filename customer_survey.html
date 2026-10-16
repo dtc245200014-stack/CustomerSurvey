@@ -1,0 +1,540 @@
+```html
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Market Research Survey</title>
+
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        padding: 30px 15px;
+        font-family: Arial, Helvetica, sans-serif;
+        background-color: #f1f1f1;
+        color: #333;
+        line-height: 1.5;
+      }
+
+      .survey-container {
+        max-width: 700px;
+        margin: 0 auto;
+        padding: 30px;
+        background-color: #fff;
+        border-top: 6px solid #6688a5;
+        border-radius: 4px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+      }
+
+      h1 {
+        margin: 0 0 10px;
+        color: #333;
+        font-size: 28px;
+        font-weight: normal;
+      }
+
+      .description {
+        margin-bottom: 28px;
+        color: #666;
+      }
+
+      .form-group {
+        margin-bottom: 25px;
+      }
+
+      .question {
+        display: block;
+        margin-bottom: 10px;
+        font-weight: bold;
+      }
+
+      .required {
+        color: #c0392b;
+      }
+
+      select,
+      input[type="text"],
+      textarea {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+        background-color: #fff;
+        font-size: 14px;
+      }
+
+      select {
+        max-width: 100%;
+      }
+
+      input:focus,
+      select:focus,
+      textarea:focus {
+        outline: none;
+        border-color: #6688a5;
+      }
+
+      .options {
+        display: flex;
+        flex-direction: column;
+        gap: 9px;
+      }
+
+      .options label {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        cursor: pointer;
+      }
+
+      input[type="radio"],
+      input[type="checkbox"] {
+        accent-color: #6688a5;
+      }
+
+      textarea {
+        min-height: 100px;
+        resize: vertical;
+      }
+
+      .price-inputs {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .price-inputs input {
+        width: 100px;
+      }
+
+      .price-inputs span {
+        color: #555;
+      }
+
+      .rating-wrapper {
+        overflow-x: auto;
+      }
+
+      .rating-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 13px;
+      }
+
+      .rating-table th,
+      .rating-table td {
+        padding: 12px 8px;
+        border: 1px solid #ddd;
+        text-align: center;
+      }
+
+      .rating-table th {
+        background-color: #f4f6f8;
+      }
+
+      .rating-table th:first-child,
+      .rating-table td:first-child {
+        width: 43%;
+        text-align: left;
+      }
+
+      .rating-table tbody tr:nth-child(even) {
+        background-color: #fafafa;
+      }
+
+      .rating-table input {
+        cursor: pointer;
+      }
+
+      .buttons {
+        display: flex;
+        gap: 10px;
+        margin-top: 25px;
+      }
+
+      button {
+        padding: 11px 24px;
+        border: none;
+        border-radius: 3px;
+        font-size: 14px;
+        cursor: pointer;
+      }
+
+      .submit-btn {
+        background-color: #6688a5;
+        color: #fff;
+      }
+
+      .submit-btn:hover {
+        background-color: #4d6f8c;
+      }
+
+      .reset-btn {
+        background-color: #e7e7e7;
+        color: #333;
+      }
+
+      .reset-btn:hover {
+        background-color: #d4d4d4;
+      }
+
+      .footer {
+        margin-top: 25px;
+        padding-top: 15px;
+        border-top: 1px solid #eee;
+        color: #888;
+        font-size: 12px;
+        text-align: center;
+      }
+
+      @media (max-width: 500px) {
+        .survey-container {
+          padding: 20px 15px;
+        }
+
+        h1 {
+          font-size: 23px;
+        }
+
+        .rating-table {
+          min-width: 510px;
+        }
+
+        .price-inputs input {
+          width: 75px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <main class="survey-container">
+      <h1>Market Research Survey</h1>
+
+      <p class="description">
+        Please take a few moments to complete this satisfaction survey.
+      </p>
+
+      <form action="#" method="post">
+        <!-- Age range -->
+        <div class="form-group">
+          <label class="question" for="age">
+            What is your age range?
+            <span class="required">*</span>
+          </label>
+
+          <select id="age" name="age" required>
+            <option value="">Please select</option>
+            <option value="Under 18">Under 18</option>
+            <option value="18-24">18 - 24</option>
+            <option value="25-34">25 - 34</option>
+            <option value="35-44">35 - 44</option>
+            <option value="45-54">45 - 54</option>
+            <option value="55 or older">55 or older</option>
+          </select>
+        </div>
+
+        <!-- Yearly income -->
+        <div class="form-group">
+          <label class="question" for="income">
+            What is your yearly income range?
+            <span class="required">*</span>
+          </label>
+
+          <select id="income" name="income" required>
+            <option value="">Please select</option>
+            <option value="Under $25,000">Under $25,000</option>
+            <option value="$25,000-$49,999">$25,000 - $49,999</option>
+            <option value="$50,000-$74,999">$50,000 - $74,999</option>
+            <option value="$75,000-$99,999">$75,000 - $99,999</option>
+            <option value="$100,000 or more">$100,000 or more</option>
+            <option value="Prefer not to say">Prefer not to say</option>
+          </select>
+        </div>
+
+        <!-- Gender identity -->
+        <div class="form-group">
+          <label class="question"> Gender Identity </label>
+
+          <div class="options">
+            <label>
+              <input type="radio" name="gender" value="Male" />
+              Male
+            </label>
+
+            <label>
+              <input type="radio" name="gender" value="Female" />
+              Female
+            </label>
+
+            <label>
+              <input type="radio" name="gender" value="Nonbinary" />
+              Nonbinary
+            </label>
+
+            <label>
+              <input type="radio" name="gender" value="Other" />
+              Other
+            </label>
+          </div>
+
+          <p style="font-size: 12px; color: #888">
+            You may leave this question blank.
+          </p>
+        </div>
+
+        <!-- Products purchased -->
+        <div class="form-group">
+          <span class="question">
+            Which of the following products have your purchased in the last 2
+            months. Please check all that apply.
+          </span>
+
+          <div class="options">
+            <label>
+              <input type="checkbox" name="products[]" value="Product 1" />
+              Product 1
+            </label>
+
+            <label>
+              <input type="checkbox" name="products[]" value="Product 2" />
+              Product 2
+            </label>
+
+            <label>
+              <input type="checkbox" name="products[]" value="Product 3" />
+              Product 3
+            </label>
+          </div>
+        </div>
+
+        <!-- Usage frequency -->
+        <div class="form-group">
+          <span class="question">
+            How often would you use our new product?
+          </span>
+
+          <div class="options">
+            <label>
+              <input type="radio" name="frequency" value="Daily" />
+              Daily
+            </label>
+
+            <label>
+              <input type="radio" name="frequency" value="Weekly" />
+              Weekly
+            </label>
+
+            <label>
+              <input type="radio" name="frequency" value="Monthly" />
+              Monthly
+            </label>
+          </div>
+        </div>
+
+        <!-- Price -->
+        <div class="form-group">
+          <span class="question">
+            What would you pay for the new product?
+          </span>
+
+          <div class="price-inputs">
+            <span>$</span>
+
+            <input
+              type="text"
+              name="dollars"
+              aria-label="Dollars"
+              inputmode="numeric"
+              placeholder="Dollars"
+            />
+
+            <span>.</span>
+
+            <input
+              type="text"
+              name="cents"
+              aria-label="Cents"
+              inputmode="numeric"
+              maxlength="2"
+              placeholder="Cents"
+            />
+          </div>
+        </div>
+
+        <!-- Product features -->
+        <div class="form-group">
+          <label class="question" for="features">
+            What features would you like to see in the new product?
+          </label>
+
+          <textarea
+            id="features"
+            name="features"
+            maxlength="250"
+            placeholder="Enter your suggestions here..."
+          ></textarea>
+        </div>
+
+        <!-- Rating table -->
+        <div class="form-group">
+          <span class="question">
+            Please rate your level of agreement with the following statements.
+          </span>
+
+          <div class="rating-wrapper">
+            <table class="rating-table">
+              <thead>
+                <tr>
+                  <th>Statement</th>
+                  <th>Strongly<br />Disagree</th>
+                  <th>Disagree</th>
+                  <th>Agree</th>
+                  <th>Strongly<br />Agree</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <tr>
+                  <td>Our products are priced fairly.</td>
+
+                  <td>
+                    <input
+                      type="radio"
+                      name="price_rating"
+                      value="1"
+                      aria-label="Price fairness: Strongly Disagree"
+                    />
+                  </td>
+
+                  <td>
+                    <input
+                      type="radio"
+                      name="price_rating"
+                      value="2"
+                      aria-label="Price fairness: Disagree"
+                    />
+                  </td>
+
+                  <td>
+                    <input
+                      type="radio"
+                      name="price_rating"
+                      value="3"
+                      aria-label="Price fairness: Agree"
+                    />
+                  </td>
+
+                  <td>
+                    <input
+                      type="radio"
+                      name="price_rating"
+                      value="4"
+                      aria-label="Price fairness: Strongly Agree"
+                    />
+                  </td>
+                </tr>
+
+                <tr>
+                  <td>Our products are high quality.</td>
+
+                  <td>
+                    <input
+                      type="radio"
+                      name="quality_rating"
+                      value="1"
+                      aria-label="Product quality: Strongly Disagree"
+                    />
+                  </td>
+
+                  <td>
+                    <input
+                      type="radio"
+                      name="quality_rating"
+                      value="2"
+                      aria-label="Product quality: Disagree"
+                    />
+                  </td>
+
+                  <td>
+                    <input
+                      type="radio"
+                      name="quality_rating"
+                      value="3"
+                      aria-label="Product quality: Agree"
+                    />
+                  </td>
+
+                  <td>
+                    <input
+                      type="radio"
+                      name="quality_rating"
+                      value="4"
+                      aria-label="Product quality: Strongly Agree"
+                    />
+                  </td>
+                </tr>
+
+                <tr>
+                  <td>
+                    You would recommend our product to a friend or coworker.
+                  </td>
+
+                  <td>
+                    <input
+                      type="radio"
+                      name="recommend_rating"
+                      value="1"
+                      aria-label="Recommendation: Strongly Disagree"
+                    />
+                  </td>
+
+                  <td>
+                    <input
+                      type="radio"
+                      name="recommend_rating"
+                      value="2"
+                      aria-label="Recommendation: Disagree"
+                    />
+                  </td>
+
+                  <td>
+                    <input
+                      type="radio"
+                      name="recommend_rating"
+                      value="3"
+                      aria-label="Recommendation: Agree"
+                    />
+                  </td>
+
+                  <td>
+                    <input
+                      type="radio"
+                      name="recommend_rating"
+                      value="4"
+                      aria-label="Recommendation: Strongly Agree"
+                    />
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Submit and reset -->
+        <div class="buttons">
+          <button type="submit" class="submit-btn">Submit</button>
+
+          <button type="reset" class="reset-btn">Reset</button>
+        </div>
+      </form>
+
+      <div class="footer">Market Research Survey</div>
+    </main>
+  </body>
+</html>
+```
